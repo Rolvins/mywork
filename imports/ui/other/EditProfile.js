@@ -15,7 +15,7 @@ export default class EditProfile extends React.Component{
             <form>
             <div className="form-row form-inline my-1">
                <div className="form-group col-6">
-                 <input type="text" className="form-control w-100" id="inputEmail4" ref="UserFullName" placeholder="Full Namejbjk" />
+                 <input type="text" className="form-control w-100" id="inputEmail4" ref="UserFullName" placeholder="Full Name" />
                </div>
                <div className="form-group col-6">
                  <input type="text" className="form-control w-100" id="inputPassword4" ref="UserNickName" placeholder="Nickname" />
