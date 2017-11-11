@@ -1,6 +1,31 @@
 import React from 'react';
 
 export default class EditProfile extends React.Component{
+  constructor(props) {
+    super(props);
+
+    this.state = { error: '' };
+  }
+
+  onSubmit(e){
+    e.preventDefault();
+    const UserFullName = this.refs.UserFullName.value.trim();
+    const UserNickName = this.refs.UserNickName.value.trim();
+    const UserGender = this.refs.UserGender.value.trim();
+    const UserDOB = this.refs.UserDOB.value.trim();
+
+    Meteor.call('EditProfile.Insert', UserFullName, (error) => {
+       if (error) {
+         this.setState({ error: 'Enter a Valid Name' });
+       } else {
+         this.setState({ error: '' });
+         this.refs.UserFullName.value = '';
+       }
+     });
+     this.refs.UserFullName.value = '';
+
+  }
+
     render(){
         return (
           <div>
@@ -12,10 +37,10 @@ export default class EditProfile extends React.Component{
                     </h4>
             </div>
             <div className="card-block">
-            <form>
+            <form onSubmit={this.onSubmit.bind(this)}>
             <div className="form-row form-inline my-1">
                <div className="form-group col-6">
-                 <input type="text" className="form-control w-100" id="inputEmail4" ref="UserFullName" placeholder="Full Name" />
+                 <input type="text" className="form-control w-100" id="inputEmail4" ref="UserFullName" placeholder="Full Name e" />
                </div>
                <div className="form-group col-6">
                  <input type="text" className="form-control w-100" id="inputPassword4" ref="UserNickName" placeholder="Nickname" />

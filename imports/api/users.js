@@ -8,20 +8,11 @@ export const Seed = new Mongo.Collection('Seed');
 export const Uact = new Mongo.Collection('Uact');
 export const Exam = new Mongo.Collection('Exam');
 
-if(Meteor.isServer){
-  Meteor.publish('Users', () => {
-    return Users.find({userId: this.userId});
-  }
-);
-}
 Meteor.methods({
-  'EditProfile.Insert'(UserFullName){
-    if(!this.userId){
-      throw new Meteor.Error('You are not an authorized user. Please Login again to update it.');
-    }
+  'EditProfile.Insert': function(UserFullName) {
     Users.insert({
-      UserFullName,
-      userId: this.userId,
+      UserFullName
     });
+    console.log('UserFullName inserted', UserFullName);
   }
 });
